@@ -1,0 +1,276 @@
+{% load static%}
+<!doctype html>
+<html lang="en">
+    <head>
+        {% block head %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Malicious Detection App{% endblock title%}</title>
+        <link rel="stylesheet" href="{% static 'fake_news_app/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'fake_news_app/css/new.css' %}">
+        <link href="{% static 'fake_news_app/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'fake_news_app/css/bootstrap-icons.css' %}" rel="stylesheet">
+        <link href="{% static 'fake_news_app/css/tooplate-clean-work.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'fake_news_app/css/style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+        {% comment %}
+        <link href="{% static 'fake_news_app/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'fake_news_app/css/bootstrap-icons.css' %}" rel="stylesheet">
+        <link href="{% static 'fake_news_app/css/tooplate-clean-work.css' %}" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+        {% endcomment %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+        <style>
+    {% block css %}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      
+  }
+  
+  body {
+      font-family: "Poppins", sans-serif;
+  }
+  
+  body a{
+    text-decoration:none;
+  }
+  {% comment %} body a:hover{
+    opacity:0.5;
+  } {% endcomment %}
+
+
+  nav {
+    height: 4rem;
+    background-color: #dc3545;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 5px;
+    align-items: end;
+  }
+  
+  ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+  
+  a {
+      text-decoration:none;
+      font-family: Poppins;
+      font-size: 12px;
+      color: #fff;
+  }
+  
+  .link {
+      position: relative;
+      list-style: none;
+      padding: 4px 32px;
+  }
+  
+  .link::after,
+  .link::before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: #fff;
+      transition: all 0.6s ease-in-out;
+  }
+  
+  .link::after {
+      top: 0;
+      right: 0;
+      transform-origin: right;
+  
+  }
+  
+  .link::before {
+      left: 0;
+      bottom: 0;
+      transform-origin: left;
+  }
+  
+  .link:hover::after,
+  .link:hover::before {
+      width: 100%;
+  }
+  
+  
+  .button {
+    position: relative;
+    padding: 6px 16px;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    background-color: #7d2ae8;
+    transition: all 0.2s ease;
+    margin : 0 15px;
+  }
+  .button:active {
+    transform: scale(0.95);
+  }
+  .button:before,
+  .button:after {
+    position: absolute;
+    content: "";
+    width: 150%;
+    left: 50%;
+    height: 100%;
+    transform: translateX(-50%);
+    z-index: -1000;
+    background-repeat: no-repeat;
+  } 
+  .button.animate::before {
+    top: -70%;
+    background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, transparent 20%, #7d2ae8 20%, transparent 30%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%);
+    background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%,
+      10% 10%, 18% 18%;
+    animation: greentopBubbles ease-in-out 0.6s forwards infinite;
+  }
+  @keyframes greentopBubbles {
+    0% {
+      background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%,
+        40% 90%, 55% 90%, 70% 90%;
+    }
+    50% {
+      background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%,
+        50% 50%, 65% 20%, 90% 30%;
+    }
+    100% {
+      background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%,
+        50% 40%, 65% 10%, 90% 20%;
+      background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+    }
+  }
+  .button.animate::after {
+    bottom: -70%;
+    background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%);
+    background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
+    animation: greenbottomBubbles ease-in-out 0.6s forwards infinite;
+  }
+  @keyframes greenbottomBubbles {
+    0% {
+      background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%,
+        70% -10%, 70% 0%;
+    }
+    50% {
+      background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%,
+        105% 0%;
+    }
+    100% {
+      background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
+        110% 10%;
+      background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+    }
+  }
+  .button a{
+    text-decoration:none;
+  }
+  li{
+    list-style:none;
+  }
+  li a{
+    text-decoration:none;
+  }
+  
+    {% endblock css %}
+</style>
+        {% endblock head%}
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li class="link">
+                    <a href="/">Home</a>
+                </li>
+                <li class="link">
+                    <a href="/landing/">Fake news Detection</a>
+                </li>
+                <li class="link">
+                    <a href="/hate/">Hate Speech Detection</a>
+                </li>
+                <li class="link">
+                    <a href="/about/">About</a>
+                </li>
+                <li class="link">
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+            <ul>
+                {% if request.user.is_anonymous %}
+                <button type="button" class="btn btn-success mx-3">
+                    <a href="/signup">Signup</a>
+                </button>
+                <button type="button" class="btn btn-success mx-3">
+                    <a href="/login">Login</a>
+                </button>
+                {% else %}
+                
+                <button class="button" class="btn btn-outline-success mx-3">
+                    <a href="/logout">Logout</a>
+                </button>
+                {% endif%}
+            </ul>
+        </nav>
+        <main class="main">
+            {% block main%}
+      {% endblock %}
+        </main>
+       
+        {%  block body%}
+        <script>
+        const button = document.querySelector(".button");
+      button.addEventListener("click", (e) => {
+        e.preventDefault;
+        button.classList.add("animate");
+        setTimeout(() => {
+          button.classList.remove("animate");
+        }, 600);
+      });
+        </script>
+           <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+        <script src="{% static 'fake_news_app/js/jquery.min.js' %}"></script>
+        <script src="{% static 'fake_news_app/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'fake_news_app/js/jquery.backstretch.min.js' %}"></script>
+        <script src="{% static 'fake_news_app/js/counter.js' %}"></script>
+        <script src="{% static 'fake_news_app/js/countdown.js' %}"></script>
+        <script src="{% static 'fake_news_app/js/init.js' %}"></script>
+        <script src="{% static 'fake_news_app/js/modernizr.js' %}"></script>
+        <script src="{% static 'fake_news_app/js/animated-headline.js' %}"></script>
+        <script src="{% static 'fake_news_app/js/custom.js' %}"></script>
+
+       
+        {% endblock body%}
+        <footer>
+          <p>&copy; 2024 Malicious Social Media Detector</p>
+        </footer>
+    </body>
+</html>

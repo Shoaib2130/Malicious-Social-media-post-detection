@@ -1,0 +1,50 @@
+{% extends "home.html" %}
+{% load static %}
+    <title>{% block title %}Malicious Social Media Detector {% endblock title %}</title>
+    
+{% block body%}
+    
+        <header class="back">
+            {% if request.user.is_anonymous%}
+            <div class="intro">
+                <h4>Welcome to Malicious Social Media Detector</h4>
+               
+                
+                <p>In order to detect malicious content on social media, please sign up and log in.</p>
+                <button id="signup" type="button" class="btn btn-success mx-3"><a href="/signup">Signup</a></button>
+                <button id="login" type="button" class="btn btn-success mx-3"><a href="/login">Login</a></button>
+            </div>
+                {% else %}
+                <div class="intro">
+                    <h4>Welcome {{request.user.username}} to Malicious Social Media Detector App</h4>
+                    <p>Explore <em>fake News Detector and Hate speech Detector</em> </p>
+                </div>
+                {% endif %}
+            
+        </header>
+        <main>
+            <section class="feature">
+                <div class="text3">
+                    <h2>Fake News Detection System</h2>
+                    <p>Our Fake News Detection System uses advanced algorithms to analyze social media posts and detect misleading or false information. This feature helps users stay informed and make informed decisions about the news they consume.</p>
+                    <a href="/landing/" class="cta">Learn More</a>
+                </div>
+                <div class="image">
+                    <img src="{% static '/hate_speech_app/images/4056374.jpg' %}" alt="">
+                </div>
+            </section>
+            <section class="feature">
+                <div class="image">
+                    <img src="{% static '/hate_speech_app/images/4065180.jpg' %}" alt="">
+                </div>
+                <div class="text4">
+                    <h2>Hate Speech Detection System</h2>
+                    <p>Our Hate Speech Detection System uses natural language processing and machine learning to detect hate speech on social media. This feature helps create a safer and more inclusive online environment by flagging and removing hateful content.</p>
+                    <a href="/hate/" class="cta">Learn More</a>
+                </div>
+               
+            </section>
+        </main>
+       
+        <script src="scripts.js"></script>
+{% endblock body%}

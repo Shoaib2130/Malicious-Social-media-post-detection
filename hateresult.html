@@ -1,0 +1,79 @@
+{% extends "home.html" %}
+{% load static %}
+{% block title %}Hate Speech / Offensive Language Prediction App{% endblock title %}
+{% block body %}
+    <header class="container-fluid one">
+        <div class="intro">
+            <h3>Hate Speech / Offensive Language Prediction</h3>
+            <a href="#txt" class="cta">Text Input</a> 
+            <a href="#img" class="cta">Image Input</a>   
+        </div>
+        <div>
+            <img src="{% static '/hate_speech_app/images/4453191.jpg' %}" alt="">
+        </div>
+    </header>
+    <main>
+        <section class="feature" id="txt">
+            <div class="text3">
+                <h2>Text based Hate Speech Detection</h2>
+
+                <form method="POST" action="{% url 'predict' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="hate_speech_text_field">Enter text:</label>
+                        <textarea class="form-control" id="hate_speech_text_field" name="hate_speech_text_field" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary mt-3">Predict</button>
+                </form>
+            </div>
+            <div class="image">
+                <img src="{% static '/hate_speech_app/images/4007743.jpg' %}" alt="" srcset="">
+            </div>
+        </section>
+        <section class="feature" id="img">
+            <div class="image">
+                <img src="{% static '/hate_speech_app/images/5364307.jpg' %}" alt="">
+            </div>
+            <div class="text4">
+                <h2>Image or Post Hate Speech Detection System</h2>
+                <h3>Upload an image</h3>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        {{ form.as_p }}
+                    <button type="submit" class="btn btn-outline-primary mt-3">Upload</button>
+                </form>
+               
+            </div>
+           
+        </section>
+    </main>
+{% endblock body %}
+
+    
+        {% comment %} {% if prediction_text %}
+        <div class="alert alert-{{ prediction_class_name }}" role="alert" style="margin-top: 2rem;">
+            {{ pre_predict_text }} {{ predict_text }} {{ prediction_text }}
+        </div>
+        {% endif %}
+        {% if expla_text %}
+        <div class="card mt-5" style="margin-top: 2rem;">
+            <div class="card-header">
+                {{ expla_text }}
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for word, prob in explain_top_2_preds.data %}
+                <li class="list-group-item">{{ word }}: {{ prob }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if wordclouds %}
+        <div class="row mt-5">
+            {% for descr in wordclouds %}
+            <div class="col-md-4">
+                <h5>{{ descr[0] }}</h5>
+                <img src="{{ descr[1] }}" alt="{{ descr[0] }}" class="img-fluid">
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %} {% endcomment %}

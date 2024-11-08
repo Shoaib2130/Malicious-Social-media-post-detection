@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Result : Hate Speech Detection{% endblock title %}
+{% block style %} 
+    img{
+        height:500px;
+    }
+{% endblock style %}
+{% block body %}
+
+    <div class="container-fluid m-5">
+        <div class="pre-text">
+            <h1>Your Input text or Post</h1>
+            <p>{{ pre_txt }}</p>
+        </div>
+        <div class="result">
+            <h1>Result</h1>
+            {% if result == 'Hate speech' %}
+            <img src="{% static '/hate_speech_app/images/4061494.jpg' %}" alt="">
+            <p>{{ result }}</p>
+        {% elif result == 'Offensive language' %}
+            <img src="{% static '/hate_speech_app/images/4040698.jpg' %}" alt="">
+            <p>{{ result }}</p>
+        {% elif result == 'Neither' %}
+            <img src="{% static '/hate_speech_app/images/80059.jpg' %}" alt="">
+            <p>{{ result }}</p>
+        {% else %}
+            <h1>Enter the Text for detection of hate Speech</h1>
+        {% endif %}
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 Malicious Social Media Detector</p>
+    </footer>
+
+{% endblock body %}
